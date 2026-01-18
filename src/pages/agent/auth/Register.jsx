@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import EmailVerificationModal from '../../components/EmailVerificationModal.jsx'
+import EmailVerificationModal from '../../../components/EmailVerificationModal.jsx'
 
 function Register() {
   const navigate = useNavigate()

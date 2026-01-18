@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import Login from './pages/auth/Login.jsx'
-import Register from './pages/auth/Register.jsx'
+import Login from './pages/agent/auth/Login.jsx'
+import Register from './pages/agent/auth/Register.jsx'
 import Layout from './components/Layout'
-import Sales from './pages/Sales'
-import Dashboard from './pages/Dashboard'
-import Sellers from './pages/Sellers'
-import Leaderboard from './pages/Leaderboard'
-import Payouts from './pages/Payouts'
-import Account from './pages/Account'
-import Home from "./pages/Home.jsx";
+import Sales from './pages/agent/Sales.jsx'
+import Dashboard from './pages/agent/Dashboard.jsx'
+import Sellers from './pages/agent/Sellers.jsx'
+import Leaderboard from './pages/agent/Leaderboard.jsx'
+import Payouts from './pages/agent/Payouts.jsx'
+import Account from './pages/agent/Account.jsx'
+import Home from "./pages/agent/Home.jsx";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-{/*        <Route path="/" element={<Layout />}>
+       <Route path="/" element={<Layout />}>
           <Route index element={<Navigate to="/sales" replace />} />
           <Route path="sales" element={<Sales />} />
           <Route path="dashboard" element={<Dashboard />} />
@@ -25,7 +25,7 @@ function App() {
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="payouts" element={<Payouts />} />
           <Route path="account" element={<Account />} />
-        </Route>*/}
+        </Route>
       </Routes>
     </BrowserRouter>
   )

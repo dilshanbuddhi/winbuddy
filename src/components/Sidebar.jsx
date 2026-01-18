@@ -1,55 +1,79 @@
-import { NavLink } from 'react-router-dom'
 
-function Sidebar() {
-  const menuItems = [
-    { name: 'Sales', path: '/sales', icon: '💰' },
-    { name: 'Dashboard', path: '/dashboard', icon: '📊' },
-    { name: 'Sellers', path: '/sellers', icon: '👥' },
-    { name: 'Leaderboard', path: '/leaderboard', icon: '🏆' },
-    { name: 'Payouts', path: '/payouts', icon: '💸' },
-    { name: 'Account', path: '/account', icon: '⚙️' }
-  ]
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import {
+    ShoppingBag,
+    LayoutDashboard,
+    Users,
+    Trophy,
+    CreditCard,
+    User,
+    LogOut
+} from 'lucide-react';
 
-  return (
-    <aside className="w-64 bg-gray-900 min-h-screen text-white flex flex-col">
-      <div className="p-6 border-b border-gray-700">
-        <img 
-          src="/evoplay.png" 
-          alt="EvoPlay Logo" 
-          className="h-12 w-auto object-contain"
-        />
-      </div>
 
-      <nav className="flex-1 p-4">
-        <ul className="space-y-2">
-          {menuItems.map((item) => (
-            <li key={item.path}>
-              <NavLink
-                to={item.path}
-                className={({ isActive }) =>
-                  `flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
-                    isActive
-                      ? 'bg-blue-600 text-white'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                  }`
-                }
-              >
-                <span className="text-xl">{item.icon}</span>
-                <span className="font-medium">{item.name}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-      </nav>
+const Sidebar = () => {
+    const menuItems = [
+        { name: 'Sales', path: '/sales', icon: ShoppingBag },
+        { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
+        { name: 'Sellers', path: '/sellers', icon: Users },
+        { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
+        { name: 'Payouts', path: '/payouts', icon: CreditCard },
+        { name: 'Account', path: '/account', icon: User }
+    ];
 
-      <div className="p-4 border-t border-gray-700">
-        <button className="w-full flex items-center space-x-3 px-4 py-3 text-gray-300 hover:bg-gray-800 hover:text-white rounded-lg transition-colors">
-          <span className="text-xl">🚪</span>
-          <span className="font-medium">Logout</span>
-        </button>
-      </div>
-    </aside>
-  )
-}
+    return (
+        <aside className="w-64 bg-white min-h-screen border-r border-slate-100 flex flex-col">
+            {/* Logo Section */}
+            <div className="px-8 py-10">
+                <div className="flex items-center gap-1">
+                    <span className="text-2xl font-bold text-[#111111] tracking-tight">EVO</span>
+                    <span className="text-2xl font-bold text-[#FF9F1C] tracking-tight uppercase">Play</span>
+                </div>
+            </div>
 
-export default Sidebar
+            {/* Navigation Section */}
+            <nav className="flex-1 px-4">
+                <ul className="space-y-1">
+                    {menuItems.map((item) => (
+                        <li key={item.path}>
+                            <NavLink
+                                to={item.path}
+                                className={({ isActive }) =>
+                                    `flex items-center gap-4 px-4 py-3.5 rounded-xl transition-all duration-200 group ${
+                                        isActive
+                                            ? 'bg-[#EEF5FF] text-[#4285F4]'
+                                            : 'text-[#64748B] hover:bg-slate-50 hover:text-slate-900'
+                                    }`
+                                }
+                            >
+                                {({ isActive }) => (
+                                    <>
+                                        <div className={`p-1 rounded-md transition-colors ${isActive ? 'text-[#4285F4]' : 'text-[#64748B] group-hover:text-slate-900'}`}>
+                                            <item.icon size={20} strokeWidth={isActive ? 2.5 : 2} />
+                                        </div>
+                                        <span className={`font-medium text-[15px] ${isActive ? 'text-[#4285F4]' : 'text-[#64748B] group-hover:text-slate-900'}`}>
+                      {item.name}
+                    </span>
+                                    </>
+                                )}
+                            </NavLink>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+
+            {/* Logout / Footer Section */}
+            <div className="p-4 mt-auto">
+                <button className="w-full flex items-center gap-4 px-4 py-3.5 text-[#64748B] hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
+                    <div className="p-1">
+                        <LogOut size={20} />
+                    </div>
+                    <span className="font-medium text-[15px]">Logout</span>
+                </button>
+            </div>
+        </aside>
+    );
+};
+
+export default Sidebar;
