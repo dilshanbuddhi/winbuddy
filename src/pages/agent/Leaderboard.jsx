@@ -1,53 +1,100 @@
-function Leaderboard() {
-  const leaders = [
-    { rank: 1, name: 'John Doe', sales: 45, revenue: 'Rs. 4,500', badge: '🥇' },
-    { rank: 2, name: 'Jane Smith', sales: 38, revenue: 'Rs. 3,800', badge: '🥈' },
-    { rank: 3, name: 'Mike Johnson', sales: 32, revenue: 'Rs. 3,200', badge: '🥉' },
-    { rank: 4, name: 'Sarah Williams', sales: 28, revenue: 'Rs. 2,800', badge: '' },
-    { rank: 5, name: 'David Brown', sales: 25, revenue: 'Rs. 2,500', badge: '' },
-  ]
+import React from 'react';
 
-  return (
-    <div className="max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Leaderboard</h1>
+const Leaderboard = () => {
+    const currentDate = '12/01/2026';
 
-      <div className="bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-2xl p-8 mb-8 text-white text-center">
-        <h2 className="text-2xl font-bold mb-4">Top Performer This Month</h2>
-        <div className="text-6xl mb-4">🏆</div>
-        <h3 className="text-3xl font-bold mb-2">{leaders[0].name}</h3>
-        <p className="text-xl">{leaders[0].sales} Sales - {leaders[0].revenue}</p>
-      </div>
+    // Sample data - replace with real API-fetched data
+    const leaderboard = [
+        { rank: 1, name: 'Sarah Johnson', totalSales: '24,500', isTop: true },
+        { rank: 2, name: 'Michael Chen', totalSales: '22,300', isTop: true, highlight: true },
+        { rank: 3, name: 'Emily Rodriguez', totalSales: '19,800', isTop: true },
+        { rank: 4, name: 'David Kim', totalSales: '18,400' },
+        { rank: 5, name: 'Jessica Taylor', totalSales: '17,200' },
+        { rank: 6, name: 'Daniel Martinez', totalSales: '16,100' },
+        { rank: 7, name: 'Amanda White', totalSales: '15,300' },
+        { rank: 8, name: 'Christopher Lee', totalSales: '14,800' },
+    ];
 
-      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-        <div className="p-6 border-b border-gray-200">
-          <h2 className="text-xl font-bold text-gray-800">Rankings</h2>
-        </div>
-        <div className="divide-y divide-gray-200">
-          {leaders.map((leader) => (
-            <div
-              key={leader.rank}
-              className={`p-6 flex items-center justify-between hover:bg-gray-50 transition ${
-                leader.rank <= 3 ? 'bg-yellow-50' : ''
-              }`}
-            >
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center font-bold text-gray-700">
-                  {leader.badge || `#${leader.rank}`}
-                </div>
+    const getTrophy = (rank) => {
+        if (rank === 1) return '🏆'; // Gold
+        if (rank === 2) return '🥈'; // Silver
+        if (rank === 3) return '🥉'; // Bronze
+        return '';
+    };
+
+    return (
+        <div className="p-6 md:p-8 lg:p-10">
+            {/* Header */}
+            <div className="flex justify-between items-start mb-6 md:mb-8">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-800">{leader.name}</h3>
-                  <p className="text-sm text-gray-600">{leader.sales} sales</p>
+                    <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">Leaderboard</h1>
+                    <p className="text-slate-500 mt-1 text-sm md:text-base">
+                        Top performing Agents this month: 01/01/2026 - 31/01/2026
+                    </p>
                 </div>
-              </div>
-              <div className="text-right">
-                <p className="text-xl font-bold text-gray-800">{leader.revenue}</p>
-              </div>
+                <div className="text-slate-600 font-medium text-sm md:text-base">
+                    {currentDate}
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
-}
 
-export default Leaderboard
+            {/* Leaderboard Card */}
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden max-w-3xl">
+                {/* Table Header */}
+                <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
+                    <div className="grid grid-cols-[60px_1fr_140px] gap-4 font-medium text-slate-600 text-sm">
+                        <div>Rank</div>
+                        <div>Name</div>
+                        <div className="text-right">Total Sales</div>
+                    </div>
+                </div>
+
+                {/* Rows */}
+                <div className="divide-y divide-slate-100">
+                    {leaderboard.map((agent) => (
+                        <div
+                            key={agent.rank}
+                            className={`grid grid-cols-[60px_1fr_140px] gap-4 items-center px-6 py-4 transition-colors ${
+                                agent.highlight
+                                    ? 'bg-green-50/70'
+                                    : agent.isTop
+                                        ? 'bg-purple-50/30'
+                                        : 'hover:bg-slate-50'
+                            }`}
+                        >
+                            {/* Rank + Trophy */}
+                            <div className="flex items-center gap-2">
+                                {agent.rank <= 3 ? (
+                                    <span className="text-xl">{getTrophy(agent.rank)}</span>
+                                ) : (
+                                    <span className="text-slate-500 font-medium">{agent.rank}</span>
+                                )}
+
+                                {/* Purple circle avatar placeholder */}
+                                <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-medium">
+                                    {agent.name.charAt(0)}
+                                </div>
+                            </div>
+
+                            {/* Name */}
+                            <div className="font-medium text-slate-900 truncate">
+                                {agent.name}
+                            </div>
+
+                            {/* Total Sales */}
+                            <div className="text-right font-medium text-slate-900">
+                                Rs. {agent.totalSales}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Optional footer note */}
+            <p className="text-slate-500 text-sm mt-6 text-center">
+                Rankings are based on total sales volume for the current month
+            </p>
+        </div>
+    );
+};
+
+export default Leaderboard;
