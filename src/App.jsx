@@ -17,8 +17,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-       <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/sales" replace />} />
+        <Route path="/agent" element={<Layout />}>
+          <Route index element={<Navigate to="/agent/sales" replace />} />
           <Route path="sales" element={<Sales />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="sellers" element={<Sellers />} />

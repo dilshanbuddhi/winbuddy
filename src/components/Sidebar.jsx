@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import {
     ShoppingBag,
     LayoutDashboard,
@@ -13,13 +13,20 @@ import {
 
 
 const Sidebar = () => {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Clear any auth tokens/session data here if needed
+        navigate('/');
+    };
+
     const menuItems = [
-        { name: 'Sales', path: '/sales', icon: ShoppingBag },
-        { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard },
-        { name: 'Sellers', path: '/sellers', icon: Users },
-        { name: 'Leaderboard', path: '/leaderboard', icon: Trophy },
-        { name: 'Payouts', path: '/payouts', icon: CreditCard },
-        { name: 'Account', path: '/account', icon: User }
+        { name: 'Sales', path: '/agent/sales', icon: ShoppingBag },
+        { name: 'Dashboard', path: '/agent/dashboard', icon: LayoutDashboard },
+        { name: 'Sellers', path: '/agent/sellers', icon: Users },
+        { name: 'Leaderboard', path: '/agent/leaderboard', icon: Trophy },
+        { name: 'Payouts', path: '/agent/payouts', icon: CreditCard },
+        { name: 'Account', path: '/agent/account', icon: User }
     ];
 
     return (
@@ -65,7 +72,10 @@ const Sidebar = () => {
 
             {/* Logout / Footer Section */}
             <div className="p-4 mt-auto">
-                <button className="w-full flex items-center gap-4 px-4 py-3.5 text-[#64748B] hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
+                <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-4 px-4 py-3.5 text-[#64748B] hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group"
+                >
                     <div className="p-1">
                         <LogOut size={20} />
                     </div>
