@@ -8,7 +8,7 @@ import {
     Trophy,
     CreditCard,
     User,
-    LogOut
+    LogOut, Upload
 } from 'lucide-react';
 
 
@@ -26,6 +26,7 @@ const Sidebar = () => {
         { name: 'Sellers', path: '/agent/sellers', icon: Users },
         { name: 'Leaderboard', path: '/agent/leaderboard', icon: Trophy },
         { name: 'Payouts', path: '/agent/payouts', icon: CreditCard },
+        { name: 'Upload Receipt', path: '/agent/upload-receipts', icon: Upload },
         { name: 'Account', path: '/agent/account', icon: User }
     ];
 

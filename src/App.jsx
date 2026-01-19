@@ -9,6 +9,7 @@ import Leaderboard from './pages/agent/Leaderboard.jsx'
 import Payouts from './pages/agent/Payouts.jsx'
 import Account from './pages/agent/Account.jsx'
 import Home from "./pages/agent/Home.jsx";
+import UploadReceipt from "./pages/agent/Upload_Receipt.jsx";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="payouts" element={<Payouts />} />
           <Route path="account" element={<Account />} />
+          <Route path="upload-receipts" element={<UploadReceipt />} />
         </Route>
       </Routes>
     </BrowserRouter>
