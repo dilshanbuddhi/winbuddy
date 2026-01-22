@@ -33,7 +33,7 @@ function Home() {
                 {/* Buttons */}
                 <div className="space-y-3 sm:space-y-4 mt-16 sm:mt-28">
                     <button
-                        onClick={() => navigate('/seller')}
+                        onClick={() => navigate('/seller/login')}
                         className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 rounded-xl transition duration-200 shadow-md hover:shadow-lg text-sm sm:text-base"
                     >
                         Seller Console
