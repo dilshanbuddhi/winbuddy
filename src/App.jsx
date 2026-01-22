@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import Login from './pages/agent/auth/Login.jsx'
 import Register from './pages/agent/auth/Register.jsx'
-import Layout from './components/Layout'
+import Layout from './components/Agent/Layout.jsx'
 import Sales from './pages/agent/Sales.jsx'
 import Dashboard from './pages/agent/Dashboard.jsx'
 import Sellers from './pages/agent/Sellers.jsx'

@@ -92,26 +92,26 @@ const Dashboard = () => {
         {/* Table */}
         <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-[700px]">
+            <table className="w-full text-left min-w-[600px]">
               <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Date</th>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Total Sales</th>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Total Commissions</th>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Status</th>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Deposit Amount</th>
-                <th className="px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Deposit Before</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Date</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Total Sales</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Commissions</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Status</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Deposit</th>
+                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Before</th>
               </tr>
               </thead>
               <tbody>
               {tableData.map((row, index) => (
                   <tr key={index} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors">
-                    <td className="px-4 py-3 text-sm text-slate-800 whitespace-nowrap">{row.date}</td>
-                    <td className="px-4 py-3 text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalSales}</td>
-                    <td className="px-4 py-3 text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalCommissions}</td>
-                    <td className="px-4 py-3">
+                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-800 whitespace-nowrap">{row.date}</td>
+                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalSales}</td>
+                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalCommissions}</td>
+                    <td className="px-3 sm:px-4 py-3">
                     <span
-                        className={`inline-block px-2.5 py-1 text-xs font-medium rounded-full ${
+                        className={`inline-block px-2 sm:px-2.5 py-1 text-xs font-medium rounded-full ${
                             row.status === 'Pending'
                                 ? 'bg-orange-100 text-orange-700 border border-orange-200'
                                 : 'bg-green-100 text-green-700 border border-green-200'
@@ -120,8 +120,8 @@ const Dashboard = () => {
                       {row.status}
                     </span>
                     </td>
-                    <td className="px-4 py-3 text-sm text-slate-800 whitespace-nowrap">Rs. {row.depositAmount}</td>
-                    <td className="px-4 py-3 text-sm text-slate-600 whitespace-nowrap">{row.depositBefore}</td>
+                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-800 whitespace-nowrap">Rs. {row.depositAmount}</td>
+                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-600 whitespace-nowrap">{row.depositBefore}</td>
                   </tr>
               ))}
               </tbody>

@@ -63,30 +63,30 @@ const Sellers  = () => {
         </div>
 
         {/* Sellers Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {sellers.map((seller, index) => (
               <div
                   key={index}
-                  className={`bg-white rounded-2xl border shadow-sm overflow-hidden transition-all ${
+                  className={`bg-white rounded-xl sm:rounded-2xl border shadow-sm overflow-hidden transition-all ${
                       seller.isBlocked
                           ? 'border-orange-300 bg-orange-50/30'
                           : 'border-slate-200'
                   }`}
               >
-                <div className="p-5 md:p-6">
+                <div className="p-4 sm:p-5 md:p-6">
                   {/* Header with avatar placeholder + name + phone */}
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-medium shrink-0">
+                  <div className="flex items-start gap-3 sm:gap-4 mb-4">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 font-medium shrink-0 text-sm sm:text-base">
                       {seller.name.charAt(0)}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <h3 className="font-semibold text-slate-900 truncate">
+                      <h3 className="font-semibold text-slate-900 truncate text-sm sm:text-base">
                         {seller.name}
                       </h3>
-                      <p className="text-slate-600 text-sm mt-0.5">{seller.phone}</p>
+                      <p className="text-slate-600 text-xs sm:text-sm mt-0.5">{seller.phone}</p>
 
                       <span
-                          className={`inline-block mt-2 px-3 py-1 text-xs font-medium rounded-full ${
+                          className={`inline-block mt-2 px-2 sm:px-3 py-0.5 sm:py-1 text-xs font-medium rounded-full ${
                               seller.isBlocked
                                   ? 'bg-red-100 text-red-700 border border-red-200'
                                   : 'bg-green-100 text-green-700 border border-green-200'
@@ -98,14 +98,14 @@ const Sellers  = () => {
                   </div>
 
                   {/* Stats */}
-                  <div className="space-y-3 mt-5">
-                    <div className="flex justify-between text-sm">
+                  <div className="space-y-2 sm:space-y-3 mt-4 sm:mt-5">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-slate-600">Total Sales</span>
                       <span className="font-medium text-slate-900">
                     Rs. {seller.totalSales}
                   </span>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between text-xs sm:text-sm">
                       <span className="text-slate-600">My Commission</span>
                       <span className="font-medium text-slate-900">
                     Rs. {seller.myCommission}
@@ -115,8 +115,8 @@ const Sellers  = () => {
 
                   {/* Blocked note */}
                   {seller.isBlocked && (
-                      <div className="mt-5 pt-4 border-t border-orange-200">
-                        <p className="text-red-600 text-sm font-medium">
+                      <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-orange-200">
+                        <p className="text-red-600 text-xs sm:text-sm font-medium">
                           {seller.note}
                         </p>
                       </div>

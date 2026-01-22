@@ -77,9 +77,9 @@ const UploadReceipt = () => {
             {/* Main Upload Area - centered */}
             <div className="flex justify-center">
                 <div className="bg-white rounded-2xl border border-slate-200 shadow-sm w-full max-w-2xl">
-                <div className="p-6 md:p-8">
+                <div className="p-4 sm:p-6 md:p-8">
                     <div
-                        className={`border-2 border-dashed rounded-xl p-8 md:p-10 transition-all ${
+                        className={`border-2 border-dashed rounded-xl p-6 sm:p-8 md:p-10 transition-all ${
                             dragActive
                                 ? 'border-blue-500 bg-blue-50'
                                 : selectedFile
@@ -100,20 +100,20 @@ const UploadReceipt = () => {
                         />
 
                         {!previewUrl ? (
-                            <div className="text-left space-y-3">
-                                <div className="w-14 h-14 rounded-full bg-blue-100 flex items-center justify-center mb-5">
-                                    <span className="text-blue-600 text-3xl">↑</span>
+                            <div className="text-left space-y-2 sm:space-y-3">
+                                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-blue-100 flex items-center justify-center mb-4 sm:mb-5">
+                                    <span className="text-blue-600 text-2xl sm:text-3xl">↑</span>
                                 </div>
 
-                                <p className="text-slate-800 font-medium text-lg">
+                                <p className="text-slate-800 font-medium text-base sm:text-lg">
                                     Drag & drop your image here
                                 </p>
-                                <p className="text-slate-600 text-base">
+                                <p className="text-slate-600 text-sm sm:text-base">
                                     or <span className="text-blue-600 font-medium cursor-pointer hover:underline" onClick={handleBrowseClick}>
                     click to browse
                   </span>
                                 </p>
-                                <p className="text-slate-400 text-sm pt-2">
+                                <p className="text-slate-400 text-xs sm:text-sm pt-2">
                                     JPG, PNG, WEBP (Max 5MB)
                                 </p>
                             </div>
@@ -122,7 +122,7 @@ const UploadReceipt = () => {
                                 <img
                                     src={previewUrl}
                                     alt="Receipt preview"
-                                    className="max-h-64 w-full object-contain rounded-lg shadow-sm border border-slate-200"
+                                    className="max-h-48 sm:max-h-64 w-full object-contain rounded-lg shadow-sm border border-slate-200"
                                 />
                                 <p className="text-slate-700 font-medium text-sm truncate">
                                     {selectedFile?.name}
@@ -131,11 +131,11 @@ const UploadReceipt = () => {
                         )}
                     </div>
 
-                    {/* Buttons - right aligned */}
-                    <div className="flex justify-end gap-4 mt-8">
+                    {/* Buttons - responsive */}
+                    <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 mt-6 sm:mt-8">
                         <button
                             onClick={handleCancel}
-                            className="px-6 py-3 border border-slate-300 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors min-w-[100px]"
+                            className="w-full sm:w-auto px-6 py-2.5 sm:py-3 border border-slate-300 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors"
                             disabled={!selectedFile}
                         >
                             Cancel
@@ -144,7 +144,7 @@ const UploadReceipt = () => {
                         <button
                             onClick={handleUpload}
                             disabled={!selectedFile}
-                            className={`px-8 py-3 rounded-xl font-medium text-white flex items-center gap-2 min-w-[120px] justify-center ${
+                            className={`w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-medium text-white flex items-center gap-2 justify-center ${
                                 selectedFile
                                     ? 'bg-blue-600 hover:bg-blue-700 shadow-sm'
                                     : 'bg-blue-300 cursor-not-allowed'

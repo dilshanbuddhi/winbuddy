@@ -92,25 +92,25 @@ const Sales = () => {
           </div>
         </div>
 
-        {/* Card – aligned LEFT + smaller width */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 max-w-sm w-full">
+        {/* Card – responsive width */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 sm:p-6 w-full max-w-sm">
           <div className="space-y-5">
             {/* Phone Number */}
             <div>
               <label className="block text-slate-700 text-sm font-medium mb-2">
                 Phone Number
               </label>
-              <div className="flex gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 <input
                     type="text"
                     value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="e.g. 072 365 8989"
-                    className="flex-1 px-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-slate-800 text-sm"
+                    className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-slate-800 text-sm"
                 />
                 <button
                     onClick={handleCheck}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-medium text-sm transition-colors min-w-[76px]"
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 sm:py-3 rounded-xl font-medium text-sm transition-colors"
                 >
                   Check
                 </button>

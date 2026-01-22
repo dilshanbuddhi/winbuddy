@@ -38,10 +38,10 @@ const Leaderboard = () => {
             </div>
 
             {/* Leaderboard Card */}
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden max-w-3xl">
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden w-full max-w-3xl">
                 {/* Table Header */}
-                <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
-                    <div className="grid grid-cols-[60px_1fr_140px] gap-4 font-medium text-slate-600 text-sm">
+                <div className="bg-slate-50 border-b border-slate-200 px-3 sm:px-6 py-4">
+                    <div className="grid grid-cols-[40px_1fr_80px] sm:grid-cols-[60px_1fr_140px] gap-2 sm:gap-4 font-medium text-slate-600 text-xs sm:text-sm">
                         <div>Rank</div>
                         <div>Name</div>
                         <div className="text-right">Total Sales</div>
@@ -53,7 +53,7 @@ const Leaderboard = () => {
                     {leaderboard.map((agent) => (
                         <div
                             key={agent.rank}
-                            className={`grid grid-cols-[60px_1fr_140px] gap-4 items-center px-6 py-4 transition-colors ${
+                            className={`grid grid-cols-[40px_1fr_80px] sm:grid-cols-[60px_1fr_140px] gap-2 sm:gap-4 items-center px-3 sm:px-6 py-3 sm:py-4 transition-colors ${
                                 agent.highlight
                                     ? 'bg-green-50/70'
                                     : agent.isTop
@@ -62,26 +62,26 @@ const Leaderboard = () => {
                             }`}
                         >
                             {/* Rank + Trophy */}
-                            <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 sm:gap-2">
                                 {agent.rank <= 3 ? (
-                                    <span className="text-xl">{getTrophy(agent.rank)}</span>
+                                    <span className="text-base sm:text-xl">{getTrophy(agent.rank)}</span>
                                 ) : (
-                                    <span className="text-slate-500 font-medium">{agent.rank}</span>
+                                    <span className="text-slate-500 font-medium text-sm">{agent.rank}</span>
                                 )}
 
-                                {/* Purple circle avatar placeholder */}
-                                <div className="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs font-medium">
+                                {/* Purple circle avatar placeholder - hidden on mobile */}
+                                <div className="hidden sm:flex w-8 h-8 rounded-full bg-purple-500 items-center justify-center text-white text-xs font-medium">
                                     {agent.name.charAt(0)}
                                 </div>
                             </div>
 
                             {/* Name */}
-                            <div className="font-medium text-slate-900 truncate">
+                            <div className="font-medium text-slate-900 truncate text-sm sm:text-base">
                                 {agent.name}
                             </div>
 
                             {/* Total Sales */}
-                            <div className="text-right font-medium text-slate-900">
+                            <div className="text-right font-medium text-slate-900 text-xs sm:text-base">
                                 Rs. {agent.totalSales}
                             </div>
                         </div>
