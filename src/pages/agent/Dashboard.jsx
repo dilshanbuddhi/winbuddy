@@ -1,10 +1,10 @@
 import React from 'react';
-import { Coins, Wallet } from 'lucide-react';
+import { FileText, CheckCircle2 } from 'lucide-react';
 
 const Dashboard = () => {
   const currentDate = '12/01/2026';
 
-  // Sample data - replace with real API data later
+  // Sample data – later replace with real data
   const stats = {
     pendingSales: '2,800.00',
     pendingCommissions: '140.00',
@@ -22,7 +22,7 @@ const Dashboard = () => {
     {
       date: '10/01/2026',
       totalSales: '22,300',
-      totalCommissions: '1,115',
+      totalCommissions: '1,115.00',
       status: 'Deposited',
       depositAmount: '22,300',
       depositBefore: '13/01/2026, 3:00 PM',
@@ -30,7 +30,7 @@ const Dashboard = () => {
     {
       date: '09/01/2026',
       totalSales: '19,800',
-      totalCommissions: '990',
+      totalCommissions: '990.00',
       status: 'Deposited',
       depositAmount: '19,800',
       depositBefore: '12/01/2026, 3:00 PM',
@@ -38,7 +38,7 @@ const Dashboard = () => {
     {
       date: '08/01/2026',
       totalSales: '18,400',
-      totalCommissions: '920',
+      totalCommissions: '920.00',
       status: 'Deposited',
       depositAmount: '18,400',
       depositBefore: '11/01/2026, 3:00 PM',
@@ -46,89 +46,114 @@ const Dashboard = () => {
     {
       date: '07/01/2026',
       totalSales: '17,200',
-      totalCommissions: '860',
+      totalCommissions: '860.00',
       status: 'Deposited',
       depositAmount: '17,200',
-      depositBefore: '01/01/2026, 3:00 PM',
+      depositBefore: '10/01/2026, 3:00 PM',
     },
   ];
 
   return (
-      <div className="p-6 md:p-8 lg:p-10">
-        {/* Header */}
-        <div className="flex justify-between items-start mb-6 md:mb-8">
-          <div>
-            <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">Dashboard</h1>
-            <p className="text-slate-500 mt-1 text-sm md:text-base">Today</p>
-          </div>
-          <div className="text-slate-600 font-medium text-sm md:text-base">
-            {currentDate}
+    <div className="p-5 md:p-6 lg:p-8 flex flex-col min-h-screen bg-slate-50">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Dashboard</h1>
+          <p className="text-slate-500 mt-1 text-sm md:text-base">Today</p>
+        </div>
+        <div className="text-slate-600 font-medium text-base md:text-lg">
+          {currentDate}
+        </div>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 mb-8">
+        {/* Pending Sales Card */}
+        <div className="bg-white rounded-2xl p-6 border border-slate-200">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <h3 className="text-orange-500 font-semibold text-lg">Pending Sales</h3>
+              <p className="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Rs. {stats.pendingSales}
+              </p>
+            </div>
+            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600">
+              <FileText className="w-7 h-7" />
+            </div>
           </div>
         </div>
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mb-8 max-w-2xl">
-          <div className="bg-white border border-dashed border-slate-300 rounded-xl p-5 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-slate-700 font-medium">Pending Sales</h3>
-              <Wallet className="w-5 h-5 text-green-600" />
+        {/* Pending Commissions Card */}
+        <div className="bg-white rounded-2xl p-6 border border-slate-200">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <h3 className="text-orange-500 font-semibold text-lg">Pending Commissions</h3>
+              <p className="text-2xl md:text-3xl font-bold text-slate-900 mt-2">
+                Rs. {stats.pendingCommissions}
+              </p>
             </div>
-            <p className="text-2xl md:text-3xl font-bold text-slate-900">
-              Rs. {stats.pendingSales}
-            </p>
-          </div>
-
-          <div className="bg-white border border-dashed border-slate-300 rounded-xl p-5 shadow-sm">
-            <div className="flex items-center justify-between mb-3">
-              <h3 className="text-slate-700 font-medium">Pending Commissions</h3>
-              <Coins className="w-5 h-5 text-green-600" />
+            <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-emerald-100 text-emerald-600">
+              <CheckCircle2 className="w-7 h-7" />
             </div>
-            <p className="text-2xl md:text-3xl font-bold text-slate-900">
-              Rs. {stats.pendingCommissions}
-            </p>
-          </div>
-        </div>
-
-        {/* Table */}
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left min-w-[600px]">
-              <thead className="bg-slate-50 border-b border-slate-200">
-              <tr>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Date</th>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Total Sales</th>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Commissions</th>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Status</th>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Deposit</th>
-                <th className="px-3 sm:px-4 py-3 text-xs font-medium text-slate-600 whitespace-nowrap">Before</th>
-              </tr>
-              </thead>
-              <tbody>
-              {tableData.map((row, index) => (
-                  <tr key={index} className="border-b border-slate-100 last:border-0 hover:bg-slate-50/50 transition-colors">
-                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-800 whitespace-nowrap">{row.date}</td>
-                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalSales}</td>
-                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm font-medium text-slate-900 whitespace-nowrap">Rs. {row.totalCommissions}</td>
-                    <td className="px-3 sm:px-4 py-3">
-                    <span
-                        className={`inline-block px-2 sm:px-2.5 py-1 text-xs font-medium rounded-full ${
-                            row.status === 'Pending'
-                                ? 'bg-orange-100 text-orange-700 border border-orange-200'
-                                : 'bg-green-100 text-green-700 border border-green-200'
-                        }`}
-                    >
-                      {row.status}
-                    </span>
-                    </td>
-                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-800 whitespace-nowrap">Rs. {row.depositAmount}</td>
-                    <td className="px-3 sm:px-4 py-3 text-xs sm:text-sm text-slate-600 whitespace-nowrap">{row.depositBefore}</td>
-                  </tr>
-              ))}
-              </tbody>
-            </table>
           </div>
         </div>
       </div>
+
+      {/* Table Section */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex-1">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[720px]">
+            <thead className="bg-slate-100 border-b border-slate-200">
+              <tr>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Date</th>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Total Sales</th>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Total Commissions</th>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Status</th>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Deposit Amount</th>
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">Deposit Before</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((row, index) => (
+                <tr
+                  key={index}
+                  className={`border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors ${
+                    index % 2 === 0 ? 'bg-white' : 'bg-slate-50'
+                  }`}
+                >
+                  <td className="px-5 py-4 text-sm text-slate-800 whitespace-nowrap font-medium">
+                    {row.date}
+                  </td>
+                  <td className="px-5 py-4 text-sm font-medium text-slate-900 whitespace-nowrap">
+                    Rs. {row.totalSales}
+                  </td>
+                  <td className="px-5 py-4 text-sm font-medium text-slate-900 whitespace-nowrap">
+                    Rs. {row.totalCommissions}
+                  </td>
+                  <td className="px-5 py-4">
+                    <span
+                      className={`inline-block px-3 py-1 text-xs font-semibold rounded-full ${
+                        row.status === 'Pending'
+                          ? 'bg-orange-100 text-orange-700 border border-orange-200'
+                          : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
+                      }`}
+                    >
+                      {row.status}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4 text-sm text-slate-900 whitespace-nowrap font-medium">
+                    Rs. {row.depositAmount}
+                  </td>
+                  <td className="px-5 py-4 text-sm text-slate-600 whitespace-nowrap">
+                    {row.depositBefore}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   );
 };
 
