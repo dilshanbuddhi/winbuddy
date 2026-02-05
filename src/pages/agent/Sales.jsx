@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const AddCustomerModal = ({ isOpen, onClose, phoneNumber, onSubmit }) => {
   const [customerName, setCustomerName] = useState('');
@@ -42,7 +42,7 @@ const AddCustomerModal = ({ isOpen, onClose, phoneNumber, onSubmit }) => {
           </button>
           <button
             onClick={handleSubmit}
-            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl font-semibold transition-colors"
+            className="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl font-semibold transition-colors"
           >
             Submit
           </button>
@@ -56,15 +56,40 @@ const Sales = () => {
   const [phoneNumber, setPhoneNumber] = useState('072 365 8989');
   const [isCheckPerformed, setIsCheckPerformed] = useState(false);
   const [customerFound, setCustomerFound] = useState(false);
+  const [customerName, setCustomerName] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isAddCustomerModalOpen, setIsAddCustomerModalOpen] = useState(false);
+  const [currentDateTime, setCurrentDateTime] = useState(() => new Date());
+  const [isPurchaseSuccess, setIsPurchaseSuccess] = useState(false);
 
-  const pricePerUnit = 50;
+  const pricePerUnit = 20;
+
+  const normalizePhone = (phone) => phone.replace(/\s|-/g, '').trim();
+  const KNOWN_PHONE = '0782960721';
+  const KNOWN_NAME = 'buddhi dilshan';
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentDateTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const onPhoneChange = (e) => {
+    setPhoneNumber(e.target.value);
+    setIsCheckPerformed(false);
+    setCustomerFound(false);
+    setCustomerName('');
+  };
 
   const handleCheck = () => {
     setIsCheckPerformed(true);
-    // Replace with real API call later
-    setCustomerFound(phoneNumber.trim().endsWith('1'));
+    const normalized = normalizePhone(phoneNumber);
+    if (normalized === KNOWN_PHONE) {
+      setCustomerFound(true);
+      setCustomerName(KNOWN_NAME);
+    } else {
+      setCustomerFound(false);
+      setCustomerName('');
+    }
   };
 
   const handleIncrement = () => setQuantity((prev) => prev + 1);
@@ -77,7 +102,22 @@ const Sales = () => {
     // You can add API call here to save the customer
   };
 
-  const currentDate = '12/01/2026';
+  const canSubmit = isCheckPerformed && customerFound && !isPurchaseSuccess;
+  const isCheckDisabled = !phoneNumber.trim();
+
+  const handleSubmit = () => {
+    // Front-end only for now; add API call here later
+    setIsPurchaseSuccess(true);
+  };
+
+  const handleNewSale = () => {
+    setIsPurchaseSuccess(false);
+    setQuantity(1);
+    setIsCheckPerformed(false);
+    setCustomerFound(false);
+    setCustomerName('');
+    setPhoneNumber('');
+  };
 
   return (
       <div className="p-6 md:p-8 lg:p-10">
@@ -87,8 +127,8 @@ const Sales = () => {
             <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">Sales</h1>
             <p className="text-slate-500 mt-1 text-sm md:text-base">Submit sales</p>
           </div>
-          <div className="text-slate-600 font-medium text-sm md:text-base">
-            {currentDate}
+          <div className="text-slate-600 font-medium text-sm md:text-base tabular-nums">
+            {currentDateTime.toLocaleDateString()} {currentDateTime.toLocaleTimeString()}
           </div>
         </div>
 
@@ -104,37 +144,46 @@ const Sales = () => {
                 <input
                     type="text"
                     value={phoneNumber}
-                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    onChange={onPhoneChange}
                     placeholder="e.g. 072 365 8989"
                     className="flex-1 px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/30 focus:border-blue-500 text-slate-800 text-sm"
                 />
                 <button
+                    type="button"
                     onClick={handleCheck}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 sm:py-3 rounded-xl font-medium text-sm transition-colors"
+                    disabled={isCheckDisabled}
+                    className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed disabled:hover:bg-slate-300 text-white px-5 py-2.5 sm:py-3 rounded-xl font-medium text-sm transition-colors"
                 >
                   Check
                 </button>
               </div>
             </div>
 
+            {/* Customer name (shown when check done and customer found) */}
+            {isCheckPerformed && customerFound && (
+              <div>
+                <input
+                  type="text"
+                  value={customerName}
+                  readOnly
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-green-300 bg-green-50/50 rounded-xl text-slate-800 text-sm"
+                  placeholder="Harsha Silva"
+                />
+              </div>
+            )}
+
             {/* Customer not found */}
             {isCheckPerformed && !customerFound && (
                 <div className="space-y-3">
-                  <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-center font-medium text-sm animate-in fade-in duration-200">
+                  <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl text-center font-medium text-sm">
                     Customer not found
                   </div>
                   <button
+                    type="button"
                     onClick={() => setIsAddCustomerModalOpen(true)}
                     className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3.5 rounded-xl font-semibold text-sm transition-colors shadow-sm">
                     Add Customer
                   </button>
-                </div>
-            )}
-
-            {/* Customer found */}
-            {isCheckPerformed && customerFound && (
-                <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-xl text-center font-medium text-sm">
-                  Customer found: Example Name
                 </div>
             )}
 
@@ -143,21 +192,26 @@ const Sales = () => {
               <label className="block text-slate-700 text-sm font-medium mb-2.5">
                 Number of Gold Coin Packages
               </label>
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-stretch gap-2.5">
                 <button
+                    type="button"
                     onClick={handleDecrement}
-                    className="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xl font-bold shadow-sm"
+                    disabled={quantity <= 1}
+                    className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] inline-flex items-center justify-center rounded-lg bg-slate-300 text-slate-600 hover:bg-slate-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-300 transition-colors shadow-sm select-none text-2xl font-bold leading-none p-0"
+                    aria-label="Decrease quantity"
                 >
                   −
                 </button>
 
-                <div className="flex-1 border border-slate-300 rounded-xl py-3 text-center font-bold text-xl text-slate-800 bg-white">
+                <div className="flex-1 min-w-0 flex items-center justify-center border border-slate-300 rounded-xl font-bold text-xl text-slate-800 bg-white h-11">
                   {quantity}
                 </div>
 
                 <button
+                    type="button"
                     onClick={handleIncrement}
-                    className="w-10 h-10 flex items-center justify-center bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-xl font-bold shadow-sm"
+                    className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] inline-flex items-center justify-center rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors shadow-sm select-none text-2xl font-bold leading-none p-0"
+                    aria-label="Increase quantity"
                 >
                   +
                 </button>
@@ -166,15 +220,35 @@ const Sales = () => {
 
             {/* Total */}
             <div className="text-center py-3">
-            <span className="text-3xl font-bold text-slate-900">
-              Rs. {quantity * pricePerUnit}
-            </span>
+              <span className="text-3xl font-bold text-slate-900">
+                Rs. {quantity * pricePerUnit}
+              </span>
             </div>
 
-            {/* Submit */}
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold text-base transition-all shadow-md shadow-blue-500/20">
-              Submit
-            </button>
+            {/* Submit / Success */}
+            {isPurchaseSuccess ? (
+              <div className="space-y-3">
+                <div className="w-full py-3.5 rounded-xl font-semibold text-base text-center bg-green-500 hover:bg-green-600 text-white shadow-md pointer-events-none">
+                  Purchase Successful!
+                </div>
+                <button
+                  type="button"
+                  onClick={handleNewSale}
+                  className="w-full py-3.5 rounded-xl font-semibold text-base bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20 transition-colors"
+                >
+                  New Sale
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={handleSubmit}
+                disabled={!canSubmit}
+                className="w-full py-3 rounded-xl font-semibold text-base transition-all shadow-md disabled:bg-slate-300 disabled:shadow-none disabled:cursor-not-allowed disabled:hover:bg-slate-300 bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/20"
+              >
+                Submit
+              </button>
+            )}
           </div>
         </div>
 

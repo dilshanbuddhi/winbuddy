@@ -14,11 +14,20 @@ function Register() {
   const [backIdImage, setBackIdImage] = useState(null)
   const [frontIdPreview, setFrontIdPreview] = useState(null)
   const [backIdPreview, setBackIdPreview] = useState(null)
+  const SRI_LANKA_DISTRICTS = [
+    'Ampara', 'Anuradhapura', 'Badulla', 'Batticaloa', 'Colombo', 'Galle', 'Gampaha',
+    'Hambantota', 'Jaffna', 'Kalutara', 'Kandy', 'Kegalle', 'Kilinochchi', 'Kurunegala',
+    'Mannar', 'Matale', 'Matara', 'Monaragala', 'Mullaitivu', 'Nuwara Eliya', 'Polonnaruwa',
+    'Puttalam', 'Ratnapura', 'Trincomalee', 'Vavuniya'
+  ]
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
     phoneNumber: '',
+    address: '',
+    district: '',
     password: '',
     confirmPassword: ''
   })
@@ -58,6 +67,14 @@ function Register() {
 
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = 'Phone number is required'
+    }
+
+    if (!formData.address.trim()) {
+      newErrors.address = 'Address is required'
+    }
+
+    if (!formData.district) {
+      newErrors.district = 'District is required'
     }
 
     if (!formData.password) {
@@ -204,6 +221,45 @@ function Register() {
             />
             {errors.phoneNumber && (
               <p className="mt-1 text-sm text-red-500">{errors.phoneNumber}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="address" className="block text-sm font-medium text-gray-700 mb-2">
+              Address
+            </label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              value={formData.address}
+              onChange={handleChange}
+              className={`w-full px-3 py-2 border ${errors.address ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition`}
+              placeholder="Enter your address"
+            />
+            {errors.address && (
+              <p className="mt-1 text-sm text-red-500">{errors.address}</p>
+            )}
+          </div>
+
+          <div>
+            <label htmlFor="district" className="block text-sm font-medium text-gray-700 mb-2">
+              District
+            </label>
+            <select
+              id="district"
+              name="district"
+              value={formData.district}
+              onChange={handleChange}
+              className={`w-full px-3 py-2 border ${errors.district ? 'border-red-500' : 'border-gray-300'} rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition bg-white`}
+            >
+              <option value="">Select district</option>
+              {SRI_LANKA_DISTRICTS.map((d) => (
+                <option key={d} value={d}>{d}</option>
+              ))}
+            </select>
+            {errors.district && (
+              <p className="mt-1 text-sm text-red-500">{errors.district}</p>
             )}
           </div>
 
