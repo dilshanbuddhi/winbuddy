@@ -7,6 +7,7 @@ import {
     CreditCard,
     User,
     LogOut,
+    Upload,
     X
 } from 'lucide-react';
 
@@ -15,12 +16,10 @@ const SellerSidebar = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
 
     const handleLogout = () => {
-        // Clear any auth tokens/session data here if needed
         navigate('/');
     };
 
     const handleNavClick = () => {
-        // Close sidebar on mobile when navigating
         if (onClose) onClose();
     };
 
@@ -29,6 +28,7 @@ const SellerSidebar = ({ isOpen, onClose }) => {
         { name: 'Dashboard', path: '/seller/dashboard', icon: LayoutDashboard },
         { name: 'Leaderboard', path: '/seller/leaderboard', icon: Trophy },
         { name: 'Payouts', path: '/seller/payouts', icon: CreditCard },
+        { name: 'Upload Receipt', path: '/seller/upload-receipts', icon: Upload },
         { name: 'Account', path: '/seller/account', icon: User }
     ];
 

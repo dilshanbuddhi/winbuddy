@@ -23,6 +23,7 @@ import SellerDashboard from './pages/seller/SellerDashboard.jsx'
 import SellerLeaderboard from './pages/seller/SellerLeaderboard.jsx'
 import SellerPayouts from './pages/seller/SellerPayouts.jsx'
 import SellerAccount from './pages/seller/SellerAccount.jsx'
+import SellerUploadReceipt from './pages/seller/SellerUploadReceipt.jsx'
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
           <Route path="dashboard" element={<SellerDashboard />} />
           <Route path="leaderboard" element={<SellerLeaderboard />} />
           <Route path="payouts" element={<SellerPayouts />} />
+          <Route path="upload-receipts" element={<SellerUploadReceipt />} />
           <Route path="account" element={<SellerAccount />} />
         </Route>
       </Routes>
