@@ -1,11 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const Sellers  = () => {
+const Sellers = () => {
+  const navigate = useNavigate();
   const currentDate = '12/01/2026';
 
   // Sample data – replace with real data from API
   const sellers = [
     {
+      id: '1',
       name: 'Harsh Silva',
       phone: '+94 77 632 4594',
       status: 'Blocked',
@@ -15,6 +18,7 @@ const Sellers  = () => {
       note: 'Delayed deposit\nPlease contact seller',
     },
     {
+      id: '2',
       name: 'Kasun C.',
       phone: '+94 76 589 4678',
       status: 'Active',
@@ -23,6 +27,7 @@ const Sellers  = () => {
       isBlocked: false,
     },
     {
+      id: '3',
       name: 'Supun K.',
       phone: '+94 77 117 8320',
       status: 'Active',
@@ -64,10 +69,14 @@ const Sellers  = () => {
 
         {/* Sellers Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-          {sellers.map((seller, index) => (
+          {sellers.map((seller) => (
               <div
-                  key={index}
-                  className={`bg-white rounded-xl sm:rounded-2xl border shadow-sm overflow-hidden transition-all ${
+                  key={seller.id}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => navigate(`/agent/sellers/${seller.id}`)}
+                  onKeyDown={(e) => e.key === 'Enter' && navigate(`/agent/sellers/${seller.id}`)}
+                  className={`bg-white rounded-xl sm:rounded-2xl border shadow-sm overflow-hidden transition-all cursor-pointer hover:shadow-md ${
                       seller.isBlocked
                           ? 'border-orange-300 bg-orange-50/30'
                           : 'border-slate-200'

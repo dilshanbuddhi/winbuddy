@@ -6,6 +6,7 @@ import Layout from './components/Agent/Layout.jsx'
 import Sales from './pages/agent/Sales.jsx'
 import Dashboard from './pages/agent/Dashboard.jsx'
 import Sellers from './pages/agent/Sellers.jsx'
+import SellerDetail from './pages/agent/SellerDetail.jsx'
 import SellerRequests from './pages/agent/SellerRequests.jsx'
 import Leaderboard from './pages/agent/Leaderboard.jsx'
 import Payouts from './pages/agent/Payouts.jsx'
@@ -37,6 +38,7 @@ function App() {
           <Route path="sales" element={<Sales />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="sellers" element={<Sellers />} />
+          <Route path="sellers/:sellerId" element={<SellerDetail />} />
           <Route path="seller-requests" element={<SellerRequests />} />
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="payouts" element={<Payouts />} />
