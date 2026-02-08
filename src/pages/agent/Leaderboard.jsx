@@ -99,29 +99,33 @@ const Leaderboard = () => {
                   </td>
                 </tr>
               ))}
-              {/* Current user's rank - highlighted row */}
-              <tr className="bg-emerald-50 border-t-2 border-emerald-100 hover:bg-emerald-100/80 transition-colors">
-                <td className="px-5 py-4 font-medium text-slate-900">
-                  {currentUser.rank}
-                </td>
-                <td className="px-5 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
-                      {currentUser.name
-                        .split(' ')
-                        .map((n) => n[0])
-                        .join('')
-                        .slice(0, 2)}
-                    </div>
-                    <span className="font-medium text-slate-900">{currentUser.name}</span>
-                  </div>
-                </td>
-                <td className="px-5 py-4 text-right font-medium text-slate-900 whitespace-nowrap">
-                  Rs. {currentUser.totalSales}
-                </td>
-              </tr>
             </tbody>
           </table>
+        </div>
+
+        {/* Current user's rank - highlighted card */}
+        <div
+          className="mx-4 my-4 rounded-xl border-2 px-5 py-4 flex items-center"
+          style={{ backgroundColor: '#D4FFDE', borderColor: '#00A63E' }}
+        >
+          <div className="w-20 shrink-0">
+            <span className="font-bold text-slate-900">{currentUser.rank}</span>
+          </div>
+          <div className="flex-1 flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
+              {currentUser.name
+                .split(' ')
+                .map((n) => n[0])
+                .join('')
+                .slice(0, 2)}
+            </div>
+            <span className="font-bold text-slate-900">{currentUser.name} (You)</span>
+          </div>
+          <div className="shrink-0">
+            <span className="font-bold text-slate-900 whitespace-nowrap">
+              Rs. {currentUser.totalSales}
+            </span>
+          </div>
         </div>
       </div>
     </div>

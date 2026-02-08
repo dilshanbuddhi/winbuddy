@@ -145,7 +145,7 @@ const SellerSales = () => {
                 type="button"
                 onClick={handleCheck}
                 disabled={isCheckDisabled}
-                className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-300 disabled:cursor-not-allowed disabled:hover:bg-slate-300 text-white px-5 py-2.5 sm:py-3 rounded-xl font-medium text-sm transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 disabled:text-slate-300 disabled:cursor-not-allowed disabled:hover:bg-slate-400 disabled:opacity-90 text-white px-5 py-2.5 sm:py-3 rounded-xl font-medium text-sm transition-colors"
               >
                 Check
               </button>
@@ -188,7 +188,7 @@ const SellerSales = () => {
                 type="button"
                 onClick={handleDecrement}
                 disabled={quantity <= 1}
-                className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] inline-flex items-center justify-center rounded-lg bg-slate-300 text-slate-600 hover:bg-slate-400 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-slate-300 transition-colors shadow-sm select-none text-2xl font-bold leading-none p-0"
+                className="w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] inline-flex items-center justify-center rounded-lg bg-slate-300 text-slate-700 hover:bg-slate-400 disabled:bg-slate-400 disabled:text-white disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:bg-slate-400 transition-colors shadow-sm select-none text-2xl font-bold leading-none p-0"
                 aria-label="Decrease quantity"
               >
                 −
@@ -231,7 +231,7 @@ const SellerSales = () => {
               type="button"
               onClick={handleSubmit}
               disabled={!canSubmit}
-              className="w-full py-3 rounded-xl font-semibold text-base transition-all shadow-md disabled:bg-slate-300 disabled:shadow-none disabled:cursor-not-allowed disabled:hover:bg-slate-300 bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/20"
+              className="w-full py-3 rounded-xl font-semibold text-base transition-all shadow-md disabled:bg-slate-400 disabled:text-white disabled:shadow-none disabled:cursor-not-allowed disabled:hover:bg-slate-400 disabled:opacity-90 bg-blue-600 hover:bg-blue-700 text-white shadow-blue-500/20"
             >
               Submit
             </button>

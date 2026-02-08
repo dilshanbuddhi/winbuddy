@@ -99,14 +99,14 @@ const SellerRequests = () => {
         </div>
       </div>
 
-      {/* Usage Info – same card as Sellers.jsx */}
+      {/* Usage Info */}
       <div className="mb-8">
-        <div className="inline-block bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm">
+        <div className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm">
           <p className="text-slate-700 font-medium">
-            Sellers Used {usage.sellersUsed}/{usage.maxSellers}
+            Seller Requests: <span className="font-bold text-slate-900">{pendingRequests.length}</span>
           </p>
           <p className="text-slate-500 text-sm mt-0.5">
-            You can add up to {usage.maxSellers} sellers
+            Pending requests waiting for approval.
           </p>
         </div>
       </div>

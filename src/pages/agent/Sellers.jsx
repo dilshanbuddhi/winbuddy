@@ -37,8 +37,8 @@ const Sellers = () => {
     },
   ];
 
-  const usedSellers = 3;
-  const maxSellers = 30; // screenshot says 3/30 but text says "up to 20" – using 30 as shown
+  const usedSellers = sellers.length;
+  const maxSellers = 10;
 
   return (
       <div className="p-6 md:p-8 lg:p-10">
@@ -57,12 +57,12 @@ const Sellers = () => {
 
         {/* Usage Info */}
         <div className="mb-8">
-          <div className="inline-block bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm">
+          <div className="w-full bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm">
             <p className="text-slate-700 font-medium">
-              Sellers Used {usedSellers}/{maxSellers}
+              Sellers Used: <span className="font-bold text-slate-900">{usedSellers}</span> / {maxSellers}
             </p>
             <p className="text-slate-500 text-sm mt-0.5">
-              You can add up to 20 sellers
+              You can add up to {maxSellers} sellers.
             </p>
           </div>
         </div>
@@ -76,11 +76,12 @@ const Sellers = () => {
                   tabIndex={0}
                   onClick={() => navigate(`/agent/sellers/${seller.id}`)}
                   onKeyDown={(e) => e.key === 'Enter' && navigate(`/agent/sellers/${seller.id}`)}
-                  className={`bg-white rounded-xl sm:rounded-2xl border shadow-sm overflow-hidden transition-all cursor-pointer hover:shadow-md ${
+                  className={`rounded-xl sm:rounded-2xl border shadow-sm overflow-hidden transition-all cursor-pointer hover:shadow-md ${
                       seller.isBlocked
-                          ? 'border-orange-300 bg-orange-50/30'
-                          : 'border-slate-200'
+                          ? 'border-orange-300'
+                          : 'bg-white border-slate-200'
                   }`}
+                  style={seller.isBlocked ? { backgroundColor: '#FFEDD4' } : undefined}
               >
                 <div className="p-4 sm:p-5 md:p-6">
                   {/* Header with avatar placeholder + name + phone */}
