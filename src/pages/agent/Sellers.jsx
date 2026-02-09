@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Sellers = () => {
   const navigate = useNavigate();
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB');
 
   // Sample data – replace with real data from API
   const sellers = [

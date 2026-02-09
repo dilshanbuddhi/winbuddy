@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Save, Camera, Landmark, KeyRound, MapPin, X } from 'lucide-react';
 
 const Account = () => {
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB'); 
   const [openModal, setOpenModal] = useState(null);
 
   // Modal form state
@@ -126,7 +126,7 @@ const Account = () => {
           <button
             type="button"
             onClick={() => setOpenModal('bank')}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+            className="w-full flex items-center justify-start gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
           >
             <Landmark className="w-5 h-5" />
             Add Bank Account
@@ -134,7 +134,7 @@ const Account = () => {
           <button
             type="button"
             onClick={() => setOpenModal('password')}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+            className="w-full flex items-center justify-start gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
           >
             <KeyRound className="w-5 h-5" />
             Change Password
@@ -142,7 +142,7 @@ const Account = () => {
           <button
             type="button"
             onClick={() => setOpenModal('address')}
-            className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+            className="w-full flex items-center justify-start gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
           >
             <MapPin className="w-5 h-5" />
             Change Address

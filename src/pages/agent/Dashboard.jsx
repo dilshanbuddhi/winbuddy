@@ -2,7 +2,7 @@ import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
 
 const Dashboard = () => {
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB');
 
   // Sample data – later replace with real data
   const stats = {

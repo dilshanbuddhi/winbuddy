@@ -1,8 +1,7 @@
 import React from 'react';
-import { Medal } from 'lucide-react';
 
 const Leaderboard = () => {
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB');
   const dateRange = '01/01/2026 - 31/01/2026';
 
   const topAgents = [
@@ -18,15 +17,15 @@ const Leaderboard = () => {
 
   const currentUser = {
     rank: 34,
-    name: 'Harsh Silva',
+    name: 'Harsha Silva',
     totalSales: '14,800',
   };
 
-  const getMedalColor = (rank) => {
-    if (rank === 1) return 'text-amber-500';
-    if (rank === 2) return 'text-slate-400';
-    if (rank === 3) return 'text-amber-700';
-    return '';
+  const getRankIconSrc = (rank) => {
+    if (rank === 1) return '/first.svg';
+    if (rank === 2) return '/second.svg';
+    if (rank === 3) return '/third.svg';
+    return null;
   };
 
   return (
@@ -50,7 +49,7 @@ const Leaderboard = () => {
           <table className="w-full text-left min-w-[320px]">
             <thead className="bg-slate-50 border-b border-slate-200">
               <tr>
-                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap w-20">
+                <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap w-24">
                   Rank
                 </th>
                 <th className="px-5 py-4 text-sm font-semibold text-slate-700 whitespace-nowrap">
@@ -69,17 +68,17 @@ const Leaderboard = () => {
                     index % 2 === 1 ? 'bg-slate-50/50' : 'bg-white'
                   } hover:bg-slate-50/80 transition-colors`}
                 >
-                  <td className="px-5 py-4">
-                    {agent.rank <= 3 ? (
-                      <span className="inline-flex items-center justify-center">
-                        <Medal
-                          className={`w-7 h-7 ${getMedalColor(agent.rank)}`}
-                          strokeWidth={2}
-                          fill="currentColor"
-                        />
-                      </span>
+                  <td className="px-5 py-4 w-24">
+                    {getRankIconSrc(agent.rank) ? (
+                      <img
+                        src={getRankIconSrc(agent.rank)}
+                        alt={`Rank ${agent.rank}`}
+                        className="w-7 h-7"
+                      />
                     ) : (
-                      <span className="text-slate-700 font-medium">{agent.rank}</span>
+                      <span className="text-slate-700 font-medium tabular-nums">
+                        {agent.rank}
+                      </span>
                     )}
                   </td>
                   <td className="px-5 py-4">
@@ -94,7 +93,7 @@ const Leaderboard = () => {
                       <span className="font-medium text-slate-900">{agent.name}</span>
                     </div>
                   </td>
-                  <td className="px-5 py-4 text-right font-medium text-slate-900 whitespace-nowrap">
+                  <td className="px-5 py-4 font-medium text-slate-900 whitespace-nowrap text-right">
                     Rs. {agent.totalSales}
                   </td>
                 </tr>
@@ -104,27 +103,29 @@ const Leaderboard = () => {
         </div>
 
         {/* Current user's rank - highlighted card */}
-        <div
-          className="mx-4 my-4 rounded-xl border-2 px-5 py-4 flex items-center"
-          style={{ backgroundColor: '#D4FFDE', borderColor: '#00A63E' }}
-        >
-          <div className="w-20 shrink-0">
-            <span className="font-bold text-slate-900">{currentUser.rank}</span>
-          </div>
-          <div className="flex-1 flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
-              {currentUser.name
-                .split(' ')
-                .map((n) => n[0])
-                .join('')
-                .slice(0, 2)}
+        <div className="border-t border-slate-200 bg-slate-50/40">
+          <div
+            className="flex items-center gap-3 px-5 py-4"
+            style={{ backgroundColor: '#D4FFDE', borderColor: '#00A63E' }}
+          >
+            <div className="w-24 shrink-0">
+              <span className="font-bold text-slate-900 tabular-nums">{currentUser.rank}</span>
             </div>
-            <span className="font-bold text-slate-900">{currentUser.name} (You)</span>
-          </div>
-          <div className="shrink-0">
-            <span className="font-bold text-slate-900 whitespace-nowrap">
-              Rs. {currentUser.totalSales}
-            </span>
+            <div className="flex-1 flex items-center gap-3 min-w-0">
+              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
+                {currentUser.name
+                  .split(' ')
+                  .map((n) => n[0])
+                  .join('')
+                  .slice(0, 2)}
+              </div>
+              <span className="font-bold text-slate-900 truncate">{currentUser.name} (You)</span>
+            </div>
+            <div className="shrink-0 text-right">
+              <span className="font-bold text-slate-900 whitespace-nowrap">
+                Rs. {currentUser.totalSales}
+              </span>
+            </div>
           </div>
         </div>
       </div>

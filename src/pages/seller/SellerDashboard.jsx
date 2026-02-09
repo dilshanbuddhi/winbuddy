@@ -2,7 +2,7 @@ import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
 
 const SellerDashboard = () => {
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB');
 
   const stats = {
     pendingSales: '2,800.00',

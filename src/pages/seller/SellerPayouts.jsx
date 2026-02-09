@@ -2,7 +2,7 @@ import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
 
 const SellerPayouts = () => {
-  const currentDate = '12/01/2026';
+  const currentDate = new Date().toLocaleDateString('en-GB');
   const period = 'This Month: 01/01/2026 - 31/01/2026';
 
   const data = {
