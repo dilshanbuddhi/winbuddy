@@ -10,7 +10,7 @@ const SellerPayouts = () => {
     totalCommissions: '2,122.50',
     history: [
       { period: '01/12/2025 - 31/12/2025', date: '10/01/2026', amount: '1,240.00', status: 'Paid' },
-      { period: '01/11/2025 - 30/11/2025', date: '10/12/2025', amount: '890.50', status: 'Paid' },
+      { period: '01/11/2025 - 30/11/2025', date: '10/12/2025', amount: '890.50', status: 'Pending' },
       { period: '01/10/2025 - 31/10/2025', date: '10/11/2025', amount: '2,100.00', status: 'Paid' },
       { period: '01/09/2025 - 30/09/2025', date: '10/10/2025', amount: '2,100.00', status: 'Paid' },
       { period: '01/08/2025 - 31/08/2025', date: '10/09/2025', amount: '2,100.00', status: 'Paid' },
@@ -101,7 +101,7 @@ const SellerPayouts = () => {
                   </td>
                   <td className="px-5 py-4">
                     <span
-                      className={`inline-block px-3 py-1.5 text-xs font-semibold rounded-full ${
+                      className={`inline-block min-w-[80px] text-center px-3 py-1.5 text-xs font-semibold rounded-full ${
                         item.status === 'Pending'
                           ? 'bg-orange-100 text-orange-700 border border-orange-200'
                           : 'bg-emerald-100 text-emerald-700 border border-emerald-200'

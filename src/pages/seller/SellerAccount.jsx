@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Save, Camera, Landmark, KeyRound, MapPin, X } from 'lucide-react';
+import { Save, Camera, Landmark, KeyRound, MapPin, X, Pencil } from 'lucide-react';
 
 const SellerAccount = () => {
   const currentDate = new Date().toLocaleDateString('en-GB');
+  const [isEditing, setIsEditing] = useState(false);
   const [openModal, setOpenModal] = useState(null);
 
   const [passwordForm, setPasswordForm] = useState({
@@ -58,7 +59,19 @@ const SellerAccount = () => {
 
       {/* Profile Information Card */}
       <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 md:p-8 mb-6">
-        <h2 className="text-lg font-bold text-slate-900 mb-6">Profile Information</h2>
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-lg font-bold text-slate-900">Profile Information</h2>
+          {!isEditing && (
+            <button
+              type="button"
+              onClick={() => setIsEditing(true)}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition"
+            >
+              <Pencil className="w-4 h-4" />
+              Edit
+            </button>
+          )}
+        </div>
 
         <div className="mb-8">
           <h3 className="text-sm font-medium text-slate-700 mb-3">Profile Picture</h3>
@@ -66,12 +79,14 @@ const SellerAccount = () => {
             <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white text-2xl font-semibold">
               NG
             </div>
-            <button
-              type="button"
-              className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-white shadow-md transition-colors"
-            >
-              <Camera className="w-4 h-4" />
-            </button>
+            {isEditing && (
+              <button
+                type="button"
+                className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-white shadow-md transition-colors"
+              >
+                <Camera className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
 
@@ -81,7 +96,12 @@ const SellerAccount = () => {
             <input
               type="text"
               defaultValue="Nalaka Gunawardana"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-slate-900"
+              disabled={!isEditing}
+              className={`w-full px-4 py-3 border rounded-lg outline-none transition text-slate-900 ${
+                isEditing
+                  ? 'border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                  : 'border-slate-200 bg-slate-50 cursor-not-allowed'
+              }`}
             />
           </div>
           <div>
@@ -89,7 +109,12 @@ const SellerAccount = () => {
             <input
               type="email"
               defaultValue="john.anderson@example.com"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-slate-900"
+              disabled={!isEditing}
+              className={`w-full px-4 py-3 border rounded-lg outline-none transition text-slate-900 ${
+                isEditing
+                  ? 'border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                  : 'border-slate-200 bg-slate-50 cursor-not-allowed'
+              }`}
             />
           </div>
           <div>
@@ -97,7 +122,12 @@ const SellerAccount = () => {
             <input
               type="tel"
               defaultValue="077 433 4568"
-              className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition text-slate-900"
+              disabled={!isEditing}
+              className={`w-full px-4 py-3 border rounded-lg outline-none transition text-slate-900 ${
+                isEditing
+                  ? 'border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white'
+                  : 'border-slate-200 bg-slate-50 cursor-not-allowed'
+              }`}
             />
           </div>
           <div>
@@ -111,10 +141,25 @@ const SellerAccount = () => {
             <p className="text-slate-500 text-xs mt-1">Your Seller ID cannot be changed</p>
           </div>
 
-          <button className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition">
-            <Save className="w-5 h-5" />
-            Save Changes
-          </button>
+          {isEditing && (
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+              >
+                <Save className="w-5 h-5" />
+                Save Changes
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsEditing(false)}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-slate-300 text-slate-700 font-medium hover:bg-slate-50 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          )}
         </div>
       </div>
 

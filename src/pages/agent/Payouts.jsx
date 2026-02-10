@@ -143,7 +143,7 @@ const Payouts = () => {
                   </td>
                   <td className="px-5 py-4">
                     <span
-                      className={`inline-block px-3 py-1.5 text-xs font-semibold rounded-full ${
+                      className={`inline-block min-w-[80px] text-center px-3 py-1.5 text-xs font-semibold rounded-full ${
                         item.status === 'Pending'
                         ? 'bg-orange-100 text-orange-700 border border-orange-200'
                         : 'bg-emerald-100 text-emerald-700 border border-emerald-200'
