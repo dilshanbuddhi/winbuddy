@@ -143,9 +143,9 @@ const SellerLeaderboard = () => {
                     index % 2 === 1 ? 'bg-slate-50/50' : 'bg-white'
                   } ${
                     seller.isCurrentUser
-                      ? 'bg-emerald-50/80 ring-2 ring-emerald-200 shadow-[inset_4px_0_0_0_rgba(5,150,105,0.45)]'
+                      ? 'bg-gradient-to-r from-emerald-50 via-emerald-100/60 to-emerald-50 ring-2 ring-emerald-400 shadow-[inset_6px_0_0_0_rgba(16,185,129,0.8)] animate-pulse-subtle'
                       : ''
-                  } hover:bg-slate-50/80 transition-colors`}
+                  } hover:bg-slate-50/80 transition-all duration-200`}
                 >
                   <td className="px-5 py-4 w-24">
                     {getRankIconSrc(seller.rank) ? (
@@ -155,7 +155,7 @@ const SellerLeaderboard = () => {
                         className="w-7 h-7"
                       />
                     ) : (
-                      <span className="text-slate-700 font-medium tabular-nums">
+                      <span className={`${seller.isCurrentUser ? 'text-emerald-700 font-bold' : 'text-slate-700 font-medium'} tabular-nums`}>
                         {seller.rank}
                       </span>
                     )}
@@ -186,15 +186,15 @@ const SellerLeaderboard = () => {
               ))}
             </tbody>
             <tfoot className="sticky bottom-0 z-10">
-              <tr className="border-t border-slate-200">
-                <td className="px-5 py-4 w-24" style={{ backgroundColor: '#D4FFDE' }}>
-                  <span className="font-bold text-slate-900 tabular-nums">
-                    {currentUser.rank}
+              <tr className="border-t-2 border-emerald-400 bg-gradient-to-r from-emerald-100 via-emerald-200/70 to-emerald-100 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+                <td className="px-5 py-4 w-24">
+                  <span className="font-bold text-emerald-800 tabular-nums text-lg">
+                    #{currentUser.rank}
                   </span>
                 </td>
-                <td className="px-5 py-4" style={{ backgroundColor: '#D4FFDE' }}>
+                <td className="px-5 py-4">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold ring-2 ring-emerald-400 ring-offset-2">
                       {currentUser.name
                         .split(' ')
                         .map((n) => n[0])
@@ -203,16 +203,13 @@ const SellerLeaderboard = () => {
                     </div>
                     <span className="font-bold text-slate-900 flex items-center gap-2">
                       {currentUser.name}
-                      <span className="text-[11px] uppercase tracking-wide bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded-full">
+                      <span className="text-[11px] uppercase tracking-wide bg-emerald-600 text-white font-bold px-2.5 py-1 rounded-full shadow-sm">
                         You
                       </span>
                     </span>
                   </div>
                 </td>
-                <td
-                  className="px-5 py-4 font-bold text-slate-900 whitespace-nowrap text-right"
-                  style={{ backgroundColor: '#D4FFDE' }}
-                >
+                <td className="px-5 py-4 font-bold text-emerald-800 whitespace-nowrap text-right text-lg">
                   Rs. {currentUser.totalSales}
                 </td>
               </tr>
