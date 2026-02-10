@@ -35,7 +35,7 @@ Currently, no test framework is configured. To run a single test (when tests are
 src/
 ├── components/          # Reusable components
 │   ├── Layout.jsx      # Main layout with sidebar
-│   ├── Sidebar.jsx     # Navigation sidebar
+│   ├── SellerSidebar.jsx     # Navigation sidebar
 │   └── EmailVerificationModal.jsx
 ├── pages/              # Page components
 │   ├── Login.jsx       # Login page
@@ -194,7 +194,7 @@ Access in code: `import.meta.env.VITE_API_URL`
 ## Notes for AI Agents
 
 - The logo file `evoplay.png` must be in the `public/` directory to be accessible
-- When adding new pages, update both `App.jsx` routes and `Sidebar.jsx` navigation
+- When adding new pages, update both `App.jsx` routes and `SellerSidebar.jsx` navigation
 - All authenticated pages should use the Layout component for consistent navigation
 - Forms should validate input and show user-friendly error messages
 - Use the existing color scheme: blue (#2563eb) for primary actions, purple for registration
