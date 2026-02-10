@@ -99,34 +99,33 @@ const Leaderboard = () => {
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr className="border-t border-slate-200 bg-slate-50/40">
+                <td className="px-5 py-4 w-24">
+                  <span className="font-bold text-slate-900 tabular-nums">
+                    {currentUser.rank}
+                  </span>
+                </td>
+                <td className="px-5 py-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
+                      {currentUser.name
+                        .split(' ')
+                        .map((n) => n[0])
+                        .join('')
+                        .slice(0, 2)}
+                    </div>
+                    <span className="font-bold text-slate-900">
+                      {currentUser.name} (You)
+                    </span>
+                  </div>
+                </td>
+                <td className="px-5 py-4 font-bold text-slate-900 whitespace-nowrap text-right">
+                  Rs. {currentUser.totalSales}
+                </td>
+              </tr>
+            </tfoot>
           </table>
-        </div>
-
-        {/* Current user's rank - highlighted card */}
-        <div className="border-t border-slate-200 bg-slate-50/40">
-          <div
-            className="flex items-center gap-3 px-5 py-4"
-            style={{ backgroundColor: '#D4FFDE', borderColor: '#00A63E' }}
-          >
-            <div className="w-24 shrink-0">
-              <span className="font-bold text-slate-900 tabular-nums">{currentUser.rank}</span>
-            </div>
-            <div className="flex-1 flex items-center gap-3 min-w-0">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex-shrink-0 flex items-center justify-center text-white text-sm font-semibold">
-                {currentUser.name
-                  .split(' ')
-                  .map((n) => n[0])
-                  .join('')
-                  .slice(0, 2)}
-              </div>
-              <span className="font-bold text-slate-900 truncate">{currentUser.name} (You)</span>
-            </div>
-            <div className="shrink-0 text-right">
-              <span className="font-bold text-slate-900 whitespace-nowrap">
-                Rs. {currentUser.totalSales}
-              </span>
-            </div>
-          </div>
         </div>
       </div>
     </div>
