@@ -23,7 +23,7 @@ function SellerRegister() {
     email: '',
     phoneNumber: '',
     agentId: '',
-    accountType: 'individual', // 'individual' or 'business'
+    accountType: 'business', // 'individual' or 'business'
     address: '',
     district: '',
     password: '',
@@ -231,32 +231,31 @@ function SellerRegister() {
             )}
           </div>
 
-          {/* Account Type - Business/Individual Checkbox */}
+          {/* Account Type - Business/Individual Toggle */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Account Type
-            </label>
-            <div className="flex items-center gap-6">
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="accountTypeRadio"
-                  checked={formData.accountType === 'individual'}
-                  onChange={() => setFormData({ ...formData, accountType: 'individual' })}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-sm text-gray-700">Individual</span>
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input
-                  type="radio"
-                  name="accountTypeRadio"
-                  checked={formData.accountType === 'business'}
-                  onChange={() => setFormData({ ...formData, accountType: 'business' })}
-                  className="w-4 h-4 text-blue-600 border-gray-300 focus:ring-blue-500"
-                />
-                <span className="text-sm text-gray-700">Business</span>
-              </label>
+            <div className="flex rounded-full border border-blue-300 p-1 bg-white">
+              <button
+                type="button"
+                onClick={() => setFormData({ ...formData, accountType: 'business' })}
+                className={`flex-1 py-2 text-sm font-medium transition-colors rounded-full ${
+                  formData.accountType === 'business'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-transparent text-gray-600'
+                }`}
+              >
+                Business
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData({ ...formData, accountType: 'individual' })}
+                className={`flex-1 py-2 text-sm font-medium transition-colors rounded-full ${
+                  formData.accountType === 'individual'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-transparent text-gray-600'
+                }`}
+              >
+                Individual
+              </button>
             </div>
           </div>
 
@@ -362,13 +361,13 @@ function SellerRegister() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 rounded-lg transition duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base mt-2"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 sm:py-3 rounded-lg transition duration-200 shadow-lg hover:shadow-xl text-sm sm:text-base !mt-10"
           >
             Sign Up
           </button>
         </form>
 
-        <p className="mt-4 sm:mt-6 text-center text-gray-600 text-sm">
+        <p className="mt-2 sm:mt-4 text-left text-gray-600 text-sm">
           Already have an account?{' '}
           <Link to="/seller/login" className="text-blue-600 hover:text-blue-700 font-semibold">
             Sign In
