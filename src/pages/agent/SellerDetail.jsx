@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FileText, CheckCircle2 } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 // Dummy data per seller – replace with API call (e.g. fetchSellerDetail(sellerId))
 const getSellerDetail = (sellerId) => {
@@ -50,7 +51,6 @@ const getSellerDetail = (sellerId) => {
 const SellerDetail = () => {
   const { sellerId } = useParams();
   const navigate = useNavigate();
-  const currentDate = '12/01/2026';
   const [seller, setSeller] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -106,9 +106,7 @@ const SellerDetail = () => {
           <p className="text-slate-600 mt-1">{seller.phone}</p>
           <p className="text-slate-500 text-sm mt-0.5">Today</p>
         </div>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Summary Cards – same style as Dashboard */}

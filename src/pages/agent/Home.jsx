@@ -1,17 +1,15 @@
 import { useNavigate } from 'react-router-dom'
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx'
 
 function Home() {
     const navigate = useNavigate()
 
-    // Get today date
-    const today = new Date().toLocaleDateString('en-GB')
-
     return (
         <div className="min-h-screen bg-white relative flex items-start justify-center px-4 pt-4 sm:pt-0">
 
-            {/* Date - Top Right */}
-            <div className="absolute top-4 sm:top-6 right-4 sm:right-8 text-xs sm:text-sm text-gray-600">
-                Date: {today}
+            {/* Date/Time - Top Right: date only on mobile, full on desktop */}
+            <div className="absolute top-4 sm:top-6 right-4 sm:right-8">
+                <DateTimeDisplay />
             </div>
 
             <div className="w-full max-w-md text-center">

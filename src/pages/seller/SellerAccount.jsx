@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Save, Camera, Landmark, KeyRound, MapPin, X, Pencil } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const SellerAccount = () => {
-  const currentDate = new Date().toLocaleDateString('en-GB');
   const [isEditing, setIsEditing] = useState(false);
   const [openModal, setOpenModal] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [profileImagePreview, setProfileImagePreview] = useState(null);
+  const fileInputRef = useRef(null);
 
   const [passwordForm, setPasswordForm] = useState({
-    currentPassword: '',
     newPassword: '',
     confirmPassword: '',
   });
@@ -16,14 +18,33 @@ const SellerAccount = () => {
     bankName: '',
     accountHolderName: '',
     accountNumber: '',
-    branch: '',
   });
+
+  const handleProfileImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file');
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be under 5MB');
+        return;
+      }
+      setProfileImage(file);
+      setProfileImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const handleProfileImageClick = () => {
+    fileInputRef.current?.click();
+  };
 
   const closeModal = () => {
     setOpenModal(null);
-    setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+    setPasswordForm({ newPassword: '', confirmPassword: '' });
     setAddressForm({ address: '', district: '' });
-    setBankForm({ bankName: '', accountHolderName: '', accountNumber: '', branch: '' });
+    setBankForm({ bankName: '', accountHolderName: '', accountNumber: '' });
   };
 
   const handlePasswordSubmit = (e) => {
@@ -52,9 +73,7 @@ const SellerAccount = () => {
             Manage your profile information and settings
           </p>
         </div>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Profile Information Card */}
@@ -76,18 +95,46 @@ const SellerAccount = () => {
         <div className="mb-8">
           <h3 className="text-sm font-medium text-slate-700 mb-3">Profile Picture</h3>
           <div className="relative inline-block">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white text-2xl font-semibold">
-              NG
-            </div>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleProfileImageChange}
+              accept="image/*"
+              className="hidden"
+            />
+            {profileImagePreview ? (
+              <img
+                src={profileImagePreview}
+                alt="Profile"
+                className="w-24 h-24 rounded-full object-cover border-2 border-slate-200"
+              />
+            ) : (
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center text-white text-2xl font-semibold">
+                NG
+              </div>
+            )}
             {isEditing && (
               <button
                 type="button"
+                onClick={handleProfileImageClick}
                 className="absolute bottom-0 right-0 w-8 h-8 rounded-full bg-slate-700 hover:bg-slate-600 flex items-center justify-center text-white shadow-md transition-colors"
               >
                 <Camera className="w-4 h-4" />
               </button>
             )}
           </div>
+          {isEditing && profileImagePreview && (
+            <button
+              type="button"
+              onClick={() => {
+                setProfileImage(null);
+                setProfileImagePreview(null);
+              }}
+              className="mt-2 text-sm text-red-600 hover:text-red-700 font-medium"
+            >
+              Remove Photo
+            </button>
+          )}
         </div>
 
         <div className="space-y-5 max-w-xl">
@@ -219,23 +266,9 @@ const SellerAccount = () => {
                 </div>
                 <form onSubmit={handlePasswordSubmit} className="p-6">
                   <p className="text-slate-600 text-sm mb-5">
-                    Enter your current password and choose a new one.
+                    Enter your new password below.
                   </p>
                   <div className="space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Current Password
-                      </label>
-                      <input
-                        type="password"
-                        value={passwordForm.currentPassword}
-                        onChange={(e) =>
-                          setPasswordForm((p) => ({ ...p, currentPassword: e.target.value }))
-                        }
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        placeholder="Enter current password"
-                      />
-                    </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
                         New Password
@@ -252,7 +285,7 @@ const SellerAccount = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Confirm New Password
+                        Re-enter New Password
                       </label>
                       <input
                         type="password"
@@ -261,7 +294,7 @@ const SellerAccount = () => {
                           setPasswordForm((p) => ({ ...p, confirmPassword: e.target.value }))
                         }
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        placeholder="Confirm new password"
+                        placeholder="Re-enter new password"
                       />
                     </div>
                   </div>
@@ -385,15 +418,27 @@ const SellerAccount = () => {
                       <label className="block text-sm font-medium text-slate-700 mb-2">
                         Bank Name
                       </label>
-                      <input
-                        type="text"
+                      <select
                         value={bankForm.bankName}
                         onChange={(e) =>
                           setBankForm((p) => ({ ...p, bankName: e.target.value }))
                         }
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        placeholder="e.g. Commercial Bank"
-                      />
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                      >
+                        <option value="">Select a bank</option>
+                        <option value="Bank of Ceylon">Bank of Ceylon</option>
+                        <option value="People's Bank">People's Bank</option>
+                        <option value="Commercial Bank">Commercial Bank</option>
+                        <option value="Sampath Bank">Sampath Bank</option>
+                        <option value="National Savings Bank">National Savings Bank</option>
+                        <option value="Hatton National Bank">Hatton National Bank</option>
+                        <option value="Seylan Bank">Seylan Bank</option>
+                        <option value="National Development Bank">National Development Bank</option>
+                        <option value="Nations Trust Bank">Nations Trust Bank</option>
+                        <option value="Pan Asia Bank">Pan Asia Bank</option>
+                        <option value="Amana Bank">Amana Bank</option>
+                        <option value="DFCC Bank">DFCC Bank</option>
+                      </select>
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-slate-700 mb-2">
@@ -421,20 +466,6 @@ const SellerAccount = () => {
                         }
                         className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
                         placeholder="Enter account number"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-slate-700 mb-2">
-                        Branch <span className="text-slate-400 font-normal">(optional)</span>
-                      </label>
-                      <input
-                        type="text"
-                        value={bankForm.branch}
-                        onChange={(e) =>
-                          setBankForm((p) => ({ ...p, branch: e.target.value }))
-                        }
-                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                        placeholder="Branch name"
                       />
                     </div>
                   </div>

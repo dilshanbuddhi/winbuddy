@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 // Dummy API simulation – replace with real fetch later
 const fetchSellerRequests = () => {
@@ -43,8 +44,6 @@ const fetchSellerRequests = () => {
 };
 
 const SellerRequests = () => {
-  const currentDate = '12/01/2026';
-
   const [usage, setUsage] = useState({ sellersUsed: 0, maxSellers: 10 });
   const [pendingRequests, setPendingRequests] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -94,9 +93,7 @@ const SellerRequests = () => {
             Manage your sellers and track performance
           </p>
         </div>
-        <div className="text-slate-600 font-medium text-sm md:text-base">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Usage Info */}
@@ -145,7 +142,7 @@ const SellerRequests = () => {
                 </div>
 
                 {/* Stats – same as Sellers.jsx */}
-                <div className="space-y-2 sm:space-y-3 mt-4 sm:mt-5">
+                {/* <div className="space-y-2 sm:space-y-3 mt-4 sm:mt-5">
                   <div className="flex justify-between text-xs sm:text-sm">
                     <span className="text-slate-600">Total Sales</span>
                     <span className="font-medium text-slate-900">
@@ -158,7 +155,7 @@ const SellerRequests = () => {
                       Rs. {request.myCommission}
                     </span>
                   </div>
-                </div>
+                </div> */}
 
                 {/* Action Buttons */}
                 <div className="mt-4 sm:mt-5 pt-3 sm:pt-4 border-t border-slate-100 flex gap-3">

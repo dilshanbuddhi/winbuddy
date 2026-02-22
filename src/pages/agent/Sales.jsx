@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const AddCustomerModal = ({ isOpen, onClose, phoneNumber, onSubmit }) => {
   const [customerName, setCustomerName] = useState('');
@@ -59,7 +60,6 @@ const Sales = () => {
   const [customerName, setCustomerName] = useState('');
   const [quantity, setQuantity] = useState(1);
   const [isAddCustomerModalOpen, setIsAddCustomerModalOpen] = useState(false);
-  const [currentDateTime, setCurrentDateTime] = useState(() => new Date());
   const [isPurchaseSuccess, setIsPurchaseSuccess] = useState(false);
 
   const pricePerUnit = 20;
@@ -67,11 +67,6 @@ const Sales = () => {
   const normalizePhone = (phone) => phone.replace(/\s|-/g, '').trim();
   const KNOWN_PHONE = '0782960721';
   const KNOWN_NAME = 'buddhi dilshan';
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrentDateTime(new Date()), 1000);
-    return () => clearInterval(timer);
-  }, []);
 
   const onPhoneChange = (e) => {
     setPhoneNumber(e.target.value);
@@ -127,9 +122,7 @@ const Sales = () => {
             <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">Sales</h1>
             <p className="text-slate-500 mt-1 text-sm md:text-base">Submit sales</p>
           </div>
-          <div className="text-slate-600 font-medium text-sm md:text-base tabular-nums">
-            {currentDateTime.toLocaleDateString()} {currentDateTime.toLocaleTimeString()}
-          </div>
+          <DateTimeDisplay />
         </div>
 
         {/* Card – responsive width */}

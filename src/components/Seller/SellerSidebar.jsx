@@ -49,11 +49,12 @@ const SellerSidebar = ({ isOpen, onClose }) => {
                 ${isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
             `}>
                 {/* Logo Section */}
-                <div className="px-8 py-10 flex items-center justify-between">
-                    <div className="flex items-center gap-1">
-                        <span className="text-2xl font-bold text-[#111111] tracking-tight">EVO</span>
-                        <span className="text-2xl font-bold text-[#FF9F1C] tracking-tight uppercase">Play</span>
-                    </div>
+                <div className="px-8 flex items-center justify-between">
+                    <img
+                        src="/evoplay.svg"
+                        alt="EvoPlay Logo"
+                        className="h-28 w-auto"
+                    />
                     {/* Close button for mobile */}
                     <button
                         onClick={onClose}

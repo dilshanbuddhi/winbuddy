@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const Sellers = () => {
   const navigate = useNavigate();
-  const currentDate = new Date().toLocaleDateString('en-GB');
 
   // Sample data – replace with real data from API
   const sellers = [
@@ -50,9 +50,7 @@ const Sellers = () => {
               Manage your sellers and track performance
             </p>
           </div>
-          <div className="text-slate-600 font-medium text-sm md:text-base">
-            {currentDate}
-          </div>
+          <DateTimeDisplay />
         </div>
 
         {/* Usage Info */}

@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 // Agent imports
 import Login from './pages/agent/auth/Login.jsx'
 import Register from './pages/agent/auth/Register.jsx'
+import ForgotPassword from './pages/agent/auth/ForgotPassword.jsx'
 import Layout from './components/Agent/Layout.jsx'
 import Sales from './pages/agent/Sales.jsx'
 import Dashboard from './pages/agent/Dashboard.jsx'
@@ -17,6 +18,7 @@ import UploadReceipt from "./pages/agent/Upload_Receipt.jsx";
 // Seller imports
 import SellerLogin from './pages/seller/auth/SellerLogin.jsx'
 import SellerRegister from './pages/seller/auth/SellerRegister.jsx'
+import SellerForgotPassword from './pages/seller/auth/SellerForgotPassword.jsx'
 import SellerLayout from './components/Seller/SellerLayout.jsx'
 import SellerSales from './pages/seller/SellerSales.jsx'
 import SellerDashboard from './pages/seller/SellerDashboard.jsx'
@@ -34,6 +36,7 @@ function App() {
         {/* Agent Routes */}
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/agent" element={<Layout />}>
           <Route index element={<Navigate to="/agent/sales" replace />} />
           <Route path="sales" element={<Sales />} />
@@ -50,6 +53,7 @@ function App() {
         {/* Seller Routes */}
         <Route path="/seller/login" element={<SellerLogin />} />
         <Route path="/seller/register" element={<SellerRegister />} />
+        <Route path="/seller/forgot-password" element={<SellerForgotPassword />} />
         <Route path="/seller" element={<SellerLayout />}>
           <Route index element={<Navigate to="/seller/sales" replace />} />
           <Route path="sales" element={<SellerSales />} />

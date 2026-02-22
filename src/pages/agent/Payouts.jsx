@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const Payouts = () => {
   const [activeTab, setActiveTab] = useState('my');
-
-  const currentDate = new Date().toLocaleDateString('en-GB');
   const period = 'This Month: 01/01/2026 - 31/01/2026';
 
   const getData = () => {
@@ -41,9 +40,7 @@ const Payouts = () => {
       {/* Header: title + date */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
         <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Payouts</h1>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Tabs: My Payouts | Seller Payouts */}

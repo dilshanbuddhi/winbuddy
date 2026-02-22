@@ -1,8 +1,8 @@
 import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const SellerDashboard = () => {
-  const currentDate = new Date().toLocaleDateString('en-GB');
 
   const stats = {
     pendingSales: '2,800.00',
@@ -24,9 +24,7 @@ const SellerDashboard = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Dashboard</h1>
           <p className="text-slate-500 mt-1 text-sm md:text-base">Today</p>
         </div>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 mb-8">

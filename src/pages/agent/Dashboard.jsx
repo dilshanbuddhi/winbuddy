@@ -1,8 +1,8 @@
 import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const Dashboard = () => {
-  const currentDate = new Date().toLocaleDateString('en-GB');
 
   // Sample data – later replace with real data
   const stats = {
@@ -61,9 +61,7 @@ const Dashboard = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Dashboard</h1>
           <p className="text-slate-500 mt-1 text-sm md:text-base">Today</p>
         </div>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Stats Cards */}

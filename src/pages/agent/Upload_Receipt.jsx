@@ -66,9 +66,6 @@ const UploadReceipt = () => {
             {/* Header - left aligned */}
             <div className="mb-6 max-w-2xl">
                 <h1 className="text-2xl md:text-3xl font-semibold text-slate-900">Upload Receipt</h1>
-                <p className="text-slate-500 mt-1 text-sm md:text-base">
-                    Upload & your image here
-                </p>
                 <p className="text-slate-500 mt-0.5 text-sm">
                     Upload receipts, proofs of deposit
                 </p>

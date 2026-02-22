@@ -1,8 +1,8 @@
 import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
+import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const SellerPayouts = () => {
-  const currentDate = new Date().toLocaleDateString('en-GB');
   const period = 'This Month: 01/01/2026 - 31/01/2026';
 
   const data = {
@@ -25,9 +25,7 @@ const SellerPayouts = () => {
           <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Payouts</h1>
           <p className="text-slate-500 mt-1 text-sm md:text-base">{period}</p>
         </div>
-        <div className="text-slate-600 font-medium text-base md:text-lg">
-          {currentDate}
-        </div>
+        <DateTimeDisplay />
       </div>
 
       {/* Summary Cards – same as agent Payouts */}
