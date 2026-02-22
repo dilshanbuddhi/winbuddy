@@ -145,11 +145,12 @@ const Leaderboard = () => {
                   <tr
                     key={`${agent.rank}-${agent.name}`}
                     ref={agent.isCurrentUser ? currentUserRowRef : null}
-                    className={`border-b border-slate-200 last:border-0 ${
+                    className={`border-b last:border-0 ${
                       agent.isCurrentUser
-                        ? 'bg-emerald-50 border-emerald-200'
-                        : 'bg-white'
+                        ? 'border-emerald-200'
+                        : 'bg-white border-slate-200'
                     }`}
+                    style={agent.isCurrentUser ? { backgroundColor: '#D4FFDE' } : undefined}
                   >
                     <td className="px-4 py-4 w-28 text-center">
                       {getRankIconSrc(agent.rank) ? (
