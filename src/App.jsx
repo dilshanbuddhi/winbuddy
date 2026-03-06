@@ -4,7 +4,6 @@ import Login from './pages/agent/auth/Login.jsx'
 import Register from './pages/agent/auth/Register.jsx'
 import ForgotPassword from './pages/agent/auth/ForgotPassword.jsx'
 import Layout from './components/Agent/Layout.jsx'
-import Sales from './pages/agent/Sales.jsx'
 import Dashboard from './pages/agent/Dashboard.jsx'
 import Sellers from './pages/agent/Sellers.jsx'
 import SellerDetail from './pages/agent/SellerDetail.jsx'
@@ -13,7 +12,7 @@ import Leaderboard from './pages/agent/Leaderboard.jsx'
 import Payouts from './pages/agent/Payouts.jsx'
 import Account from './pages/agent/Account.jsx'
 import Home from "./pages/agent/Home.jsx";
-import UploadReceipt from "./pages/agent/Upload_Receipt.jsx";
+
 
 // Seller imports
 import SellerLogin from './pages/seller/auth/SellerLogin.jsx'
@@ -38,8 +37,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/agent" element={<Layout />}>
-          <Route index element={<Navigate to="/agent/sales" replace />} />
-          <Route path="sales" element={<Sales />} />
+          <Route index element={<Navigate to="/agent/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="sellers" element={<Sellers />} />
           <Route path="sellers/:sellerId" element={<SellerDetail />} />
@@ -47,7 +45,6 @@ function App() {
           <Route path="leaderboard" element={<Leaderboard />} />
           <Route path="payouts" element={<Payouts />} />
           <Route path="account" element={<Account />} />
-          <Route path="upload-receipts" element={<UploadReceipt />} />
         </Route>
 
         {/* Seller Routes */}

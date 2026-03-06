@@ -1,71 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FileText, CheckCircle2 } from 'lucide-react';
 import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
 const Payouts = () => {
-  const [activeTab, setActiveTab] = useState('my');
   const period = 'This Month: 01/01/2026 - 31/01/2026';
 
-  const getData = () => {
-    if (activeTab === 'my') {
-      return {
-        totalSales: '42,450.00',
-        totalCommissions: '2,122.50',
-        history: [
-          { period: '01/12/2025 - 31/12/2025', date: '10/01/2026', amount: '1,240.00', status: 'Pending' },
-          { period: '01/11/2025 - 30/11/2025', date: '10/12/2025', amount: '890.50', status: 'Paid' },
-          { period: '01/10/2025 - 31/10/2025', date: '10/11/2025', amount: '2,100.00', status: 'Paid' },
-          { period: '01/09/2025 - 30/09/2025', date: '10/10/2025', amount: '2,100.00', status: 'Paid' },
-          { period: '01/08/2025 - 31/08/2025', date: '10/09/2025', amount: '2,100.00', status: 'Paid' },
-        ],
-      };
-    }
-    return {
-      totalSales: '347,250.00',
-      totalCommissions: '17,362.50',
-      history: [
-        { period: '01/12/2025 - 31/12/2025', date: '10/01/2026', amount: '1,240.00', status: 'Paid' },
-        { period: '01/11/2025 - 30/11/2025', date: '10/12/2025', amount: '890.50', status: 'Paid' },
-        { period: '01/10/2025 - 31/10/2025', date: '10/11/2025', amount: '2,100.00', status: 'Paid' },
-        { period: '01/09/2025 - 30/09/2025', date: '10/10/2025', amount: '2,100.00', status: 'Paid' },
-        { period: '01/08/2025 - 31/08/2025', date: '10/09/2025', amount: '2,100.00', status: 'Paid' },
-      ],
-    };
+  const data = {
+    totalSales: '347,250.00',
+    totalCommissions: '17,362.50',
+    history: [
+      { period: '01/12/2025 - 31/12/2025', date: '10/01/2026', amount: '1,240.00', status: 'Paid' },
+      { period: '01/11/2025 - 30/11/2025', date: '10/12/2025', amount: '890.50', status: 'Paid' },
+      { period: '01/10/2025 - 31/10/2025', date: '10/11/2025', amount: '2,100.00', status: 'Paid' },
+      { period: '01/09/2025 - 30/09/2025', date: '10/10/2025', amount: '2,100.00', status: 'Paid' },
+      { period: '01/08/2025 - 31/08/2025', date: '10/09/2025', amount: '2,100.00', status: 'Paid' },
+    ],
   };
-
-  const data = getData();
 
   return (
     <div className="p-5 md:p-6 lg:p-8 flex flex-col min-h-screen bg-slate-50">
       {/* Header: title + date */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Payouts</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-900">Seller Payouts</h1>
         <DateTimeDisplay />
       </div>
 
-      {/* Tabs: My Payouts | Seller Payouts */}
-      <div className="flex gap-2 mb-4">
-        <button
-          onClick={() => setActiveTab('my')}
-          className={`px-6 py-3 text-sm font-medium rounded-xl transition-colors ${
-            activeTab === 'my'
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
-          }`}
-        >
-          My Payouts
-        </button>
-        <button
-          onClick={() => setActiveTab('seller')}
-          className={`px-6 py-3 text-sm font-medium rounded-xl transition-colors ${
-            activeTab === 'seller'
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
-          }`}
-        >
-          Seller Payouts
-        </button>
-      </div>
+
 
       <p className="text-slate-600 text-sm mb-6">{period}</p>
 

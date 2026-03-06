@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import {
-    ShoppingBag,
     LayoutDashboard,
     Users,
     Trophy,
     CreditCard,
     User,
     LogOut,
-    Upload,
     X,
     ChevronDown,
     ChevronRight
@@ -34,11 +32,9 @@ const SellerSidebar = ({ isOpen, onClose }) => {
     };
 
     const menuItems = [
-        { name: 'Sales', path: '/agent/sales', icon: ShoppingBag },
         { name: 'Dashboard', path: '/agent/dashboard', icon: LayoutDashboard },
         { name: 'Leaderboard', path: '/agent/leaderboard', icon: Trophy },
         { name: 'Payouts', path: '/agent/payouts', icon: CreditCard },
-        { name: 'Upload Receipt', path: '/agent/upload-receipts', icon: Upload },
         { name: 'Account', path: '/agent/account', icon: User }
     ];
 

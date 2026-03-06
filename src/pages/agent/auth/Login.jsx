@@ -13,7 +13,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault()
     // Handle login logic here
-    navigate('/agent/sales')
+    navigate('/agent/dashboard')
   }
 
   const handleChange = (e) => {
