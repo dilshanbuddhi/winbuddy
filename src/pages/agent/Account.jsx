@@ -2,6 +2,34 @@ import React, { useState, useRef } from 'react';
 import { Save, Camera, Landmark, KeyRound, MapPin, X, Pencil } from 'lucide-react';
 import DateTimeDisplay from '../../components/DateTimeDisplay.jsx';
 
+const SRI_LANKA_DISTRICTS = [
+  'Ampara',
+  'Anuradhapura',
+  'Badulla',
+  'Batticaloa',
+  'Colombo',
+  'Galle',
+  'Gampaha',
+  'Hambantota',
+  'Jaffna',
+  'Kalutara',
+  'Kandy',
+  'Kegalle',
+  'Kilinochchi',
+  'Kurunegala',
+  'Mannar',
+  'Matale',
+  'Matara',
+  'Monaragala',
+  'Mullaitivu',
+  'Nuwara Eliya',
+  'Polonnaruwa',
+  'Puttalam',
+  'Ratnapura',
+  'Trincomalee',
+  'Vavuniya',
+];
+
 const Account = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [openModal, setOpenModal] = useState(null);
@@ -351,30 +379,20 @@ const Account = () => {
                       <label className="block text-sm font-medium text-slate-700 mb-2">
                         District
                       </label>
-                      <div className="relative">
-                        <input
-                          type="text"
-                          value={addressForm.district}
-                          onChange={(e) =>
-                            setAddressForm((p) => ({ ...p, district: e.target.value }))
-                          }
-                          className="w-full px-4 py-3 pr-10 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                          placeholder="Select or enter district"
-                        />
-                        {addressForm.district ? (
-                          <button
-                            type="button"
-                            onClick={() => setAddressForm((p) => ({ ...p, district: '' }))}
-                            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                          >
-                            <X className="w-4 h-4" />
-                          </button>
-                        ) : (
-                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
-                            ▼
-                          </span>
-                        )}
-                      </div>
+                      <select
+                        value={addressForm.district}
+                        onChange={(e) =>
+                          setAddressForm((p) => ({ ...p, district: e.target.value }))
+                        }
+                        className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none bg-white"
+                      >
+                        <option value="">Select district</option>
+                        {SRI_LANKA_DISTRICTS.map((district) => (
+                          <option key={district} value={district}>
+                            {district}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
                   <div className="flex gap-3 mt-6">
